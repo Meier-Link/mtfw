@@ -1,12 +1,12 @@
 <?
 /*
- *      StdTools.php
- *      
- *      Copyright 2010 Meier Link <jeremie.balagna@gmail.com>
- *      
- *      This program is free software licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 France License.
- *      To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/fr/
- *      or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+ *  StdTools.php
+ *  
+ *  Copyright 2010 Meier Link <lucian.von.ruthven@autistici.org>
+ *  
+ *  This program is free software licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 France License.
+ *  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/fr/
+ *  or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  *
  *
  */
