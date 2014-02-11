@@ -13,7 +13,7 @@
 
 /**
  * DbConnect
- *  Singleton specific to manage MySQL database access
+ *  Singleton specific to manage MySQL or SQLite database access
  */
 class DbConnect
 {
