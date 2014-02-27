@@ -64,7 +64,7 @@ class Controller extends StdTools
     
     $action = $params[2];
     $mycontroller = new $controller_name();
-    $mycontroller->logs = new Log();
+    //$mycontroller->logs = new Log();
     
     $mycontroller->params       = $params;
     $mycontroller->query        = $params[2];
@@ -90,11 +90,13 @@ class Controller extends StdTools
   
   public function notfound()
   {
+    $this->path = "/main/notfound";
     $this->title = "Page not found";
   }
 
   public function forbidden()
   {
+    $this->path = "/main/forbidden";
     $this->title = "Forbidden access";
   }
   
@@ -193,6 +195,17 @@ class Controller extends StdTools
       return false;
     }
     return true;
+  }
+  
+  /**
+   * isAdmin()
+   *  Check if the current user is the website admin
+   */
+  public function isAdmin()
+  {
+    if ($_SESSION['user']->u_name == Conf::get('ADMIN'))
+      return true;
+    return false;
   }
   
   public function login()
