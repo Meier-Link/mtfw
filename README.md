@@ -48,7 +48,7 @@ And my own vhost as example (for Debian Wheezy):
 		ErrorDocument 403 /errordocs/accessdenied.html
 	</VirtualHost>
 
-	<Directory /home/user/vhosts/mtfw/htdocs/>
+	<Directory /home/user/vhosts/yourproject/htdocs/>
 		AllowOverride All
 		Options -Indexes
 		Order Deny,Allow
