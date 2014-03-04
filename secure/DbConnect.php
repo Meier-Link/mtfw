@@ -115,6 +115,6 @@ class DbConnect
       $return = $return[0];
     $result->closeCursor(); // XXX @ controller
 
-    return ($return);
+    return $return;
   }
 }

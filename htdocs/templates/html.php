@@ -29,7 +29,7 @@
   
   foreach(Conf::get('DEFAULT_JS') as $js)
   {
-    ?><script src="<?php echo $js; ?>" type="text/javascript" /><?php
+    ?><script src="<?php echo $js; ?>" type="text/javascript" ></script><?php
   }
   
   foreach(Conf::get('DEFAULT_CSS') as $css)

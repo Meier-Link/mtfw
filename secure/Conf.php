@@ -43,7 +43,7 @@ class Conf
     
     /* HTML template specific */
     'DEFAULT_CSS'   => array('includes/css/template.css'),
-    'DEFAULT_JS'    => array()
+    'DEFAULT_JS'    => array('/includes/js/lib.js', '/includes/js/action.js')
   );
   
   public static function get($varname)
