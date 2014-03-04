@@ -46,7 +46,7 @@
       -->
     </div>
     <div id="menu">
-      <a class="menu" style="text-decoration:none" href="/index"><?//= $controller->tr('menu_accueil') ?>Accueil</a>
+      <a class="menu" style="text-decoration:none" href="/index">Accueil</a>
     </div>
   </div>
 
@@ -80,7 +80,7 @@
       </div>
       <div style="float:left; width: 550px; margin-left: 10px;">
         <span style="">
-          <i><?php echo Conf::get('SITE_NAME'); ?></i> by <? echo Conf::get('SITE_OWNER'); ?><br/>
+          <i><?php echo Conf::get('SITE_NAME'); ?></i> by <?php echo Conf::get('SITE_OWNER'); ?><br/>
           <a rel="cc:morePermissions" href="/about/licence" xmlns:cc="http://creativecommons.org/ns#">Plus d'informations</a>
         </span>
       </div>

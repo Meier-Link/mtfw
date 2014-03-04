@@ -1,5 +1,5 @@
 <h2>Formulaire de contact</h2>
-<?
+<?php
 $controller->genCaptchaCode();
 if (isset($_POST['msg']))
 {
