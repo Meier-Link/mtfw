@@ -58,14 +58,22 @@ class DbConnect
     $errors = $result->errorInfo();
     if($errors[0] != '00000')
     {
-      echo "<pre>";
+      //echo "<pre>";
+      ob_start();
       echo $result->debugDumpParams();
-      echo "</pre>";
-      echo "Code erreur SQLSTATE : ".$errors[0]."<br/>Code erreur driver SQL : ".$errors[1]."<br/>Erreur SQL : ".$errors[2]."<br/>";
-      echo "Debug backtrace : <pre>";
+      $logs = ob_get_contents();
+      Log::err("Erreur SQL (" . $errors[1] . ") : " . $errors[2] . ".<br/>Query: " . $logs);
+      ob_end_clean();
+      //echo "</pre>";
+      //Log::err("Code erreur SQLSTATE : ".$errors[0]."<br/>Code erreur driver SQL : ".$errors[1]."<br/>Erreur SQL : ".$errors[2]."<br/>");
+      //echo "Debug backtrace : <pre>";
+      ob_start();
       debug_print_backtrace();
-      echo "</pre>";
-      exit;
+      //echo "</pre>";
+      $logs = ob_get_contents();
+      ob_end_clean();
+      Log::dbg($logs);
+      //exit;
     }
   }
 
