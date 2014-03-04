@@ -7,7 +7,7 @@ CREATE SCHEMA IF NOT EXISTS `mtfw` DEFAULT CHARACTER SET utf8 ;
 USE `mtfw` ;
 
 -- -----------------------------------------------------
--- Table `www`.`project`
+-- Table `mtfw`.`user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mtfw`.`user` ;
 
