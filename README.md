@@ -17,6 +17,7 @@ Here you have:
 * a log class
 * a model to implement (with User.php as example)
 * a basic skeleton to place your own files
+* an admin section
 * basic js functions (only VanillaJS, here)
 
 ### For your hands
