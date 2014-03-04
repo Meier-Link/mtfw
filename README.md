@@ -13,11 +13,11 @@ This tiny framework is intended to provide a simple solution to web hobbyists.
 It deliberately don't make coffee for you :)
 Here you have:
 * a controller
-* some basics tools in StdTools
+* some basic tools in StdTools
 * a log class
 * a model to implement (with User.php as example)
 * a basic skeleton to place your own files
-* basics js functions (only VanillaJS, here)
+* basic js functions (only VanillaJS, here)
 
 ### For your hands
 
@@ -34,26 +34,26 @@ Two ways :
 ### As a vhost
 
 And my own vhost as example (for Debian Wheezy) :
-<VirtualHost *:80>
-	ServerAdmin foo@bar.baz
-	ServerName  yourproject.localhost.net
+	<VirtualHost *:80>
+		ServerAdmin foo@bar.baz
+		ServerName  yourproject.localhost.net
 
-	DocumentRoot /home/user/vhosts/yourproject/htdocs/
-	ErrorLog "/home/user/vhosts/yourproject/logs/error.log"
-	CustomLog "/home/user/vhosts/yourproject/logs/access.log" combined
+		DocumentRoot /home/user/vhosts/yourproject/htdocs/
+		ErrorLog "/home/user/vhosts/yourproject/logs/error.log"
+		CustomLog "/home/user/vhosts/yourproject/logs/access.log" combined
 
-	ErrorDocument 500 /errordocs/internalerror.html
-	ErrorDocument 404 /errordocs/filenotfound.html
-	ErrorDocument 403 /errordocs/accessdenied.html
-</VirtualHost>
+		ErrorDocument 500 /errordocs/internalerror.html
+		ErrorDocument 404 /errordocs/filenotfound.html
+		ErrorDocument 403 /errordocs/accessdenied.html
+	</VirtualHost>
 
-<Directory /home/user/vhosts/mtfw/htdocs/>
-	AllowOverride All
-	Options -Indexes
-	Order Deny,Allow
-	Deny from none
-	Allow from all
-</Directory>
+	<Directory /home/user/vhosts/mtfw/htdocs/>
+		AllowOverride All
+		Options -Indexes
+		Order Deny,Allow
+		Deny from none
+		Allow from all
+	</Directory>
 
 And then: git pull (or unzip) in the "yourproject" directory
 
