@@ -23,15 +23,25 @@
   <meta name="og:image" content="/includes/img/logo.png">
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <?php
-  if (!empty($controller->html_head)) { echo $controller->html_head; }
-  ?>
-  <script type="text/javascript" src="/includes/js/jquery.js"></script>
-  <?php
-  foreach (Conf::get('DEFAULT_CSS') as $file)
-  echo '<link href="/' . $file . '" rel="stylesheet" type="text/css" />';
+  if (!empty($controller->html_head))
+    foreach($controller->html_head as $chead)
+      echo $chead;
+  
+  foreach(Conf::get('DEFAULT_JS') as $js)
+  {
+    ?><script src="<?php echo $js; ?>" type="text/javascript" /><?php
+  }
+  
+  foreach(Conf::get('DEFAULT_CSS') as $css)
+  {
+    ?><link href="/<?php echo $css; ?>" rel="stylesheet" type="text/css" /><?php
+  }
   if (!empty($controller->custom_css))
   {
-    ?><link href="<?php echo $controller->custom_css; ?>" rel="stylesheet" type="text/css" /><?php
+    foreach($controller->custom_css as $css)
+    {
+      ?><link href="<?php echo $css; ?>" rel="stylesheet" type="text/css" /><?php
+    }
   }
   ?>
 </head>
