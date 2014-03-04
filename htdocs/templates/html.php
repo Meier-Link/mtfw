@@ -83,16 +83,14 @@
     </div>
     <hr/>
     <div class="left">
-      <div style="float: left; width: 80px">
+      <div class="license-logo">
         <a href="/about/licence" rel="license">
           <img src="http://i.creativecommons.org/l/by-sa/2.0/fr/80x15.png" style="border-width: 0pt;" alt="Creative Commons License">
         </a>
       </div>
-      <div style="float:left; width: 550px; margin-left: 10px;">
-        <span>
-          <i><?php echo Conf::get('SITE_NAME'); ?></i> by <?php echo Conf::get('SITE_OWNER'); ?><br/>
-          <a rel="cc:morePermissions" href="/about/licence" xmlns:cc="http://creativecommons.org/ns#">Plus d'informations</a>
-        </span>
+      <div class="license-txt">
+        <i><?php echo Conf::get('SITE_NAME'); ?></i> by <?php echo Conf::get('SITE_OWNER'); ?><br/>
+        <a rel="cc:morePermissions" href="/about/licence" xmlns:cc="http://creativecommons.org/ns#">Plus d'informations</a>
       </div>
     </div>
     <div class="right">

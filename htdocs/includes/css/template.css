@@ -116,7 +116,20 @@ div
 {
   float: left;
   margin: 0 auto;
-  width: 1000px;
+  width: 50%;
+}
+
+#footer .left .license-logo
+{
+  float: left;
+  width: 15%;
+}
+
+#footer .left .license-txt
+{
+  float: left;
+  margin-left: 2%;
+  width: 80%;
 }
 
 #footer .middle
@@ -129,6 +142,6 @@ div
 #footer .right
 {
   float:left;
-  margin: 2px;
+  width: 50%;
   text-align: right;
 }
