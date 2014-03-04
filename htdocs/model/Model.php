@@ -35,7 +35,7 @@ interface Model
    * @func save
    * @desc method who provide a simple method to update or create an entry on DB Table from current object
    **/
-  public function save();
+  public function save($force = true);
 
   /*
    * @func delete
