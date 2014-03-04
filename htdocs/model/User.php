@@ -2,6 +2,9 @@
 
 class User implements Model
 {
+  private static $TABLE = "user";
+  private static $FIELDS = "u_id, u_name, u_pwd, u_mail";
+  
   private $u_id   = 0;
   private $u_name = 'guest';
   private $u_pwd  = '';
@@ -10,29 +13,37 @@ class User implements Model
   private static  $table_size = 1;
   
   // Attributs
-  public function u_id($value = null)
+  public function u_id()
   {
-    return 0;
+    return $this->u_id;
   }
   
   public function u_name($value = null)
   {
+    if ($value != null) $this->u_name = $value;
     return $this->u_name;
   }
   
   public function u_pwd($value = null)
   {
-    return null;
+    return $this->u_pwd;
   }
   
   public function u_mail($value = null)
   {
-    
+    if ($value != null) $this->u_mail = $value;
+    return $this->u_mail;
   }
   
   // @Implmented methods
   public static function table_size($force = false)
   {
+    if (is_null(self::$table_size) || $force)
+    {
+      $query = "SELECT COUNT(*) AS table_size FROM " . self::$TABLE;
+      $db = DbConnect::getInstance();
+      self::$table_size = $db->query($query)['table_size'];
+    }
     return self::$table_size;
   }
   
@@ -58,9 +69,30 @@ class User implements Model
   //@Specific methods
   public static function findByLoginPwd($uname, $upwd)
   {
-    if ($uname == get_conf('adm') && $upwd == get_conf('pwd'))
-      return new User();
-    else
-      return null;
+    $adm = Conf::get('ADMIN');
+    if ($uname == $adm['LOGIN'])
+    {
+      if ($adm['PSSWD'] != null)
+      {
+        if ($upwd == $adm['PSSWD'])
+        {
+          $user = new User();
+          $user->u_name($uname);
+          $user->u_pwd($upwd);
+          return $user;
+        }
+        else
+        {
+          return null;
+        }
+      }
+    }
+    $query = "SELECT " . self::$FIELD . " FROM " . self::$TABLE . " WHERE u_name=:u_name";
+    $params = array(':u_name' => $uname);
+    $db = DbConnect::getInstance();
+    $user = $db->query($query, 'User', $params);
+    if (crypt($upwd, $user->u_pwd()) == $user->u_pwd)
+      return $user;
+    return null;
   }
 }

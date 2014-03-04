@@ -6,7 +6,8 @@ class Main extends Controller
   {
     // Check if current user can access to administration section
     if (!$this->isAdmin())
-      $this->forbidden();
+      $this->action = 'forbidden';
+      //$this->forbidden();
   }
   
   public function home()
