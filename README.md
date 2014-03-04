@@ -33,7 +33,8 @@ Two ways :
 
 ### As a vhost
 
-And my own vhost as example (for Debian Wheezy) :
+And my own vhost as example (for Debian Wheezy):
+
 	\<VirtualHost *:80\>
 		ServerAdmin foo@bar.baz
 		ServerName  yourproject.localhost.net
