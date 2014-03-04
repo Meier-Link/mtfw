@@ -28,7 +28,7 @@ class Conf
     'DB_USER'     => 'mtfw_user',
     'DB_PASS'     => 'password',
     /* Admin access */
-    'ADMIN'       => array('LOGIN' => 'root', 'PSSWD'  => 'password'),
+    'ADMIN'       => array('LOGIN' => 'root', 'PSSWD'  => 'password'), // Set PSWWD to null if you use db storage
     /* HTML template specific */
     'DEFAULT_CSS' => array('includes/css/template.css'),
     'DEFAULT_JS'  => array()
