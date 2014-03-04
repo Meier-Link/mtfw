@@ -39,10 +39,10 @@ class About extends Controller
       if ($error == 0)
       {
         if (empty($msg['mail']))
-          $headers = 'From: default@virtual-multivers.net';
+          $headers = 'From: ' . Conf::get('DEFAULT_SEND');
         else
           $headers = 'From: ' . $msg['mail'];
-        $object = trim(get_conf('tag') . ' ' . $msg['object']);
+        $object = trim(Conf::get('MAIL_TAG') . ' ' . $msg['object']);
         
         if (mail(get_conf('mail'), $object, $msg['message'], $headers))
           Log::inf("Le message a été correctement envoyé !");

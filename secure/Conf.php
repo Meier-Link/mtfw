@@ -26,7 +26,7 @@ class Conf
     'OWNER_MAIL'    => 'lucian.von.ruthven@autistici.org',
     // Default address when web mail used without any address
     'DEFAULT_SEND'  => 'default@virtual.multiverse.cc',
-    // A tag associated to mail title to make difference with your other mails (may be null)
+    // A tag associated to mail title to make difference with your other mails (may be an empty string)
     'MAIL_TAG'      => '[MTFW]',
     
     /* Database specific */
