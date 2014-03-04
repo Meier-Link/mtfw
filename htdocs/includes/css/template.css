@@ -152,6 +152,30 @@ div
   width:99%;
 }
 
+.table
+{
+  width: 99%;
+  border: 1px solid #2C2C2C;
+}
+
+.table .line
+{
+  width: 100%;
+  border-top: 1px solid #2C2C2C;
+}
+
+.table .cell
+{
+  width: 100%;
+  border-left: 1px solid #2C2C2C;
+}
+
+.table .head
+{
+  font-weight: bold;
+  text-align: center;
+}
+
 #footer .left
 {
   float: left;
