@@ -13,5 +13,10 @@ class Admin extends Controller
   public function home()
   {
     $this->title = "Accueil";
+    if (isset($_POST['query']))
+    {
+      $rslt = Query::send($_POST['query']);
+      $this->data['res'] = $rslt;
+    }
   }
 }

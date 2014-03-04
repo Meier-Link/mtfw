@@ -69,7 +69,7 @@ class DbConnect
     }
   }
 
-  public function query($query, $classname = null, $params = null)
+  public function query($query, $classname = null, $params = null, $avoid_inlining = false)
   {
     if ($this->db == null)
     {
@@ -111,7 +111,7 @@ class DbConnect
     if (count($return) == 0)
       return null;
     
-    if (count($return) == 1)
+    if ((count($return) == 1) && (!$avoid_inlining))
       $return = $return[0];
     $result->closeCursor(); // XXX @ controller
 

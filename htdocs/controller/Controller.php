@@ -218,7 +218,7 @@ class Controller extends StdTools
     if (is_null($_SESSION['user']))
       return false;
     
-    if ($_SESSION['user']->u_name == Conf::get('ADMIN'))
+    if ($_SESSION['user']->u_name() == Conf::get('ADMIN')['LOGIN'])
       return true;
     return false;
   }

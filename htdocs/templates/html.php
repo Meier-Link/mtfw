@@ -61,6 +61,9 @@
     <div id="menu">
       <a class="menu" style="text-decoration:none" href="/index">Accueil</a>
       <?php if (isset($_SESSION['user']) && !is_null($_SESSION['user'])) { ?>
+      <?php if ($controller->isAdmin()) { ?>
+      <a class="menu" style="text-decoration:none" href="/admin">Administration</a>
+      <?php } ?>
       <a class="menu" style="text-decoration:none" href="/main/logout">Logout</a>
       <?php } else { ?>
       <a class="menu" style="text-decoration:none" href="/main/login">Login</a>
