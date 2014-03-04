@@ -18,7 +18,6 @@ body
 #header
 {
   height: 200px;
-  background: url(/includes/img/header.png) no-repeat center top;
   margin-top: -8px;
   margin-bottom: -20px;
 }
@@ -26,6 +25,47 @@ body
 #main
 {
   min-height: 70%;
+}
+
+#logs
+{
+  text-align: center;
+  font-size: 12px;
+}
+
+#logs > div
+{
+  padding: 0.2em;
+}
+
+#logs .err
+{
+  font-weight: bold;
+  color: #C2C2C2;
+  background-color: #A52A2A;
+}
+
+#logs .warn
+{
+  /*color: #C2C2C2;*/
+  background-color: #E39608;
+}
+
+#logs .info
+{
+  background-color: #3A983F;
+}
+
+#logs .debug
+{
+  text-align: left;
+  background-color: #ADB0E6;
+  font: 12px Andale Mono, monospace;
+}
+
+#logs .debug pre
+{
+  margin: 0.2em;
 }
 
 #menu
