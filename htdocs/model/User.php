@@ -60,11 +60,31 @@ class User implements Model
     return new User();
   }
   
-  public function save()
-  {}
+  public function save($force = true)
+  {
+    $query = "";
+    $params = array(':u_name' => $this->u_name, ':u_pwd' => $this->u_pwd, ':u_mail' => $this->u_mail);
+    if ($force || ($this->u_id == 0))
+    {
+      $query = "INSERT INTO " . self::$TABLE . " (" . self::$FIELDS . ") VALUES (NULL, :u_name, :u_pwd, :u_mail)";
+    }
+    else
+    {
+      $query = "UPDATE " . self::$TABLE . " SET u_name=:u_name, u_pwd=:u_pwd, u_mail=:u_mail WHERE u_id=:u_id";
+      $params[':u_id'] = $this->u_id;
+    }
+    $db = DbConnect::getInstance();
+    return $db->query($query, null, $params);
+  }
   
   public function delete()
-  {}
+  {
+    $query = "DELETE FROM " . self::$TABLE . " WHERE u_id=:u_id";
+    $params = array(':u_id' => $this->u_id);
+    
+    $db = DbConnect::getInstance();
+    return $db->query($query, null, $params);
+  }
   
   //@Specific methods
   public static function findByLoginPwd($uname, $upwd)
