@@ -13,9 +13,10 @@
 
 class Controller extends StdTools
 {
-  private $_template   = 'html';
-  private $_desc       = '';
-  public $query_string = '/index';
+  private $_template      = 'html';
+  private $_desc          = '';
+  private $_default_home  = '/main/home';
+  public $query_string  = '/index';
   public $params      = array();
   public $query       = '';
   public $action      = '';
@@ -224,43 +225,53 @@ class Controller extends StdTools
   
   public function login()
   {
-    $loginfos = array();
-    
     if (isset($_POST['log']))
+    {
       $loginfos = $_POST['log'];
-    
-    if (!isset($loginfos['captcha']) || !$this->isValidCaptcha($loginfos['captcha']))
-    {
-      Log::err("Captcha invalide !");
-      return false;
-    }
-    else
-    {
-      if (!isset($loginfos['name']))
-      {
-        Log::err("Login undefined !");
-        return false;
-      }
-      if (!isset($loginfos['pwd']))
-      {
-        Log::err("Password undefined !");
-        return false;
-      }
+      $err = false;
       
-      $_SESSION['user'] = User::findByLoginPwd($loginfos['name'], $loginfos['pwd']);
-      
-      if ($_SESSION['user'] != null)
+      if (!isset($loginfos['captcha']) || !$this->isValidCaptcha($loginfos['captcha']))
       {
-        Log::inf("Vous êtes connecté !");
-        return true;
+        Log::err("Captcha invalide !");
       }
       else
       {
-        Log::err("Login and/or password invalid");
-        return false;
+        if (!isset($loginfos['name']))
+        {
+          Log::err("Login undefined !");
+          $err = true;
+        }
+        if (!isset($loginfos['pwd']))
+        {
+          Log::err("Password undefined !");
+          $err = true;
+        }
+        
+        if (!$err)
+        {
+        
+          $_SESSION['user'] = User::findByLoginPwd($loginfos['name'], $loginfos['pwd']);
+          
+          if ($_SESSION['user'] != null)
+            Log::inf("Vous êtes connecté !");
+          else
+            Log::err("Login and/or password invalid");
+        }
       }
     }
     
-    return false;
+    if (isset($_SESSION['user']) && !is_null($_SESSION['user']))
+    {
+      $this->path = $this->_default_home;
+      $this->ariane_file = "home";
+    }
+  }
+    
+  public function logout()
+  {
+    $_SESSION['user'] = null;
+    Log::inf('Vous avez bien été déconnecté');
+    $this->path = $this->_default_home;
+    $this->ariane_file = "home";
   }
 }

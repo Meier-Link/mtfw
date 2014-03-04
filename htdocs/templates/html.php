@@ -50,6 +50,9 @@
   <div id="header">
     <h1>MyTinyFrameWork</h1>
     <div style="float:left; text-align:right; width:99%; margin-top:-84px">
+      <?php if (isset($_SESSION['user']) && !is_null($_SESSION['user'])) { ?>
+      Bienvenue, <?php echo $_SESSION['user']->u_name(); ?>.
+      <?php } ?>
       <!--
       <a href="/main/hl/fr"><img alt="fr" title="Français" src="/includes/img/hl/fr.png"/></a>&nbsp;
       <a href="/main/hl/en"><img alt="en" title="English" src="/includes/img/hl/en.png"/></a>
@@ -57,6 +60,11 @@
     </div>
     <div id="menu">
       <a class="menu" style="text-decoration:none" href="/index">Accueil</a>
+      <?php if (isset($_SESSION['user']) && !is_null($_SESSION['user'])) { ?>
+      <a class="menu" style="text-decoration:none" href="/main/logout">Logout</a>
+      <?php } else { ?>
+      <a class="menu" style="text-decoration:none" href="/main/login">Login</a>
+      <?php } ?>
     </div>
   </div>
 
