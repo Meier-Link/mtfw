@@ -2,7 +2,7 @@
 /*
  *  Conf.php
  * 
- *  Copyright 2010 Meier Link <lucian.von.ruthven@autistici.org>
+ *  Copyright 2014 Jeremie aka Meier Link <jeremie.balagna@autistici.org>
  *  
  *  This program is free software licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 France License.
  *  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/fr/
