@@ -78,25 +78,25 @@
   
   <div id="footer">
     <hr>
-    <div style="width:1000px; float:left; text-align:center">
+    <div class="middle" style="">
       Site en cours de développement
     </div>
     <hr/>
-    <div id="licence_box" style="float: left; margin: 0 auto; width: 1000px;">
+    <div class="left">
       <div style="float: left; width: 80px">
         <a href="/about/licence" rel="license">
           <img src="http://i.creativecommons.org/l/by-sa/2.0/fr/80x15.png" style="border-width: 0pt;" alt="Creative Commons License">
         </a>
       </div>
       <div style="float:left; width: 550px; margin-left: 10px;">
-        <span style="">
+        <span>
           <i><?php echo Conf::get('SITE_NAME'); ?></i> by <?php echo Conf::get('SITE_OWNER'); ?><br/>
           <a rel="cc:morePermissions" href="/about/licence" xmlns:cc="http://creativecommons.org/ns#">Plus d'informations</a>
         </span>
       </div>
-      <div style="float:left; margin: 2px;">
-        <a style="text-decoration:none" href="/about/home" class="link">À propos</a>
-      </div>
+    </div>
+    <div class="right">
+      <a style="text-decoration:none" href="/about/home" class="link">À propos</a>
     </div>
   </div>
 </body>
