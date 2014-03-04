@@ -1,6 +1,6 @@
 <?php
 
-class Main extends Controller
+class Admin extends Controller
 {
   public function hook()
   {

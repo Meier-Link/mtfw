@@ -63,6 +63,13 @@ class Controller extends StdTools
     $controller_name = ucwords($params[1]);
     
     $action = $params[2];
+    // check if this class exists ...
+    if (!file_exists('controller/' . $controller_name . '.php'))
+    {
+      $controller_name = "Main";
+      $action = "notfound";
+      Log::err("La section demandée n'existe pas");
+    }
     $mycontroller = new $controller_name();
     //$mycontroller->logs = new Log();
     
@@ -92,12 +99,14 @@ class Controller extends StdTools
   {
     $this->path = "/main/notfound";
     $this->title = "Page not found";
+    $this->ariane_file = "home";
   }
 
   public function forbidden()
   {
     $this->path = "/main/forbidden";
     $this->title = "Forbidden access";
+    $this->ariane_file = "home";
   }
   
   public function relPath()
@@ -203,6 +212,11 @@ class Controller extends StdTools
    */
   public function isAdmin()
   {
+    if (!isset($_SESSION['user']))
+      $_SESSION['user'] = null;
+    if (is_null($_SESSION['user']))
+      return false;
+    
     if ($_SESSION['user']->u_name == Conf::get('ADMIN'))
       return true;
     return false;
