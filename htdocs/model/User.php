@@ -49,7 +49,11 @@ class User implements Model
   
   public static function findAll($page_num = 1, $by_page = 0)
   {
-    array(array(new User()), 1);
+    $query = "SELECT " . self::$FIELDS . " FROM " . self::$TABLE;
+    $db = DbConnect::getInstance();
+    $users = $db->query($query, "User");
+    if (!is_array($users)) $users = array($users);
+    return $users;
   }
   
   public static function findById($id)
@@ -57,7 +61,10 @@ class User implements Model
     if ($id != 1)
       return null;
     
-    return new User();
+    $query = "SELECT " . self::$FIELDS . " FROM " . self::$TABLE . " WHERE u_id=:u_id";
+    $db = DbConnect::getInstance();
+    $user = $db->query($query, "User", array(':u_id' => $id));
+    return $user;
   }
   
   public function save($force = true)
