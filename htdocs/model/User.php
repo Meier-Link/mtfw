@@ -69,19 +69,35 @@ class User implements Model
   
   public function save($force = true)
   {
-    $query = "";
-    $params = array(':u_name' => $this->u_name, ':u_pwd' => $this->u_pwd, ':u_mail' => $this->u_mail);
-    if ($force || ($this->u_id == 0))
+    $params = array();
+    if ($force)
     {
-      $query = "INSERT INTO " . self::$TABLE . " (" . self::$FIELDS . ") VALUES (NULL, :u_name, :u_pwd, :u_mail)";
+      $query = "INSERT INTO " . self::$TABLE . " (" . self::$FIELDS . ") VALUES (";
+      $fields = explode(', ', self::$FIELDS);
+      foreach($fields as $field)
+      {
+        $query .= ":" . $field . ", ";
+        $params[':' . $field] = $this->$field;
+      }
+      $query = rtrim($query, ", ") . ");";
     }
     else
     {
-      $query = "UPDATE " . self::$TABLE . " SET u_name=:u_name, u_pwd=:u_pwd, u_mail=:u_mail WHERE u_id=:u_id";
-      $params[':u_id'] = $this->u_id;
+      $query = "UPDATE " . self::$TABLE . " SET ";
+      $fields = explode(', ', self::$FIELDS);
+      foreach($fields as $field)
+      {
+        if ($field != "u_id")
+          $query .= " " . $field . " = :" . $field . ", ";
+        //if ($field != "u_pwd")
+        $params[':' . $field] = $this->$field;
+      }
+      $query = rtrim($query, ", ") . " WHERE u_id = :u_id";
     }
+    
     $db = DbConnect::getInstance();
-    return $db->query($query, null, $params);
+    $db->query($query, null, $params);
+    return true;
   }
   
   public function delete()
