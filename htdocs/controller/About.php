@@ -44,7 +44,7 @@ class About extends Controller
           $headers = 'From: ' . $msg['mail'];
         $object = trim(Conf::get('MAIL_TAG') . ' ' . $msg['object']);
         
-        if (mail(get_conf('mail'), $object, $msg['message'], $headers))
+        if (mail(Conf::get('OWNER_MAIL'), $object, $msg['message'], $headers))
           Log::inf("Le message a été correctement envoyé !");
         else
           Log::war("Impossible d'envoyer le mail ! (à priori, cette fonctionnalité n'est pas encore disponible sur le serveur)");
