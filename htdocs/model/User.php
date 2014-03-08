@@ -70,7 +70,7 @@ class User implements Model
   public function save($force = true)
   {
     $params = array();
-    if ($force)
+    if ($this->u_id == 0 || $force)
     {
       $query = "INSERT INTO " . self::$TABLE . " (" . self::$FIELDS . ") VALUES (";
       $fields = explode(', ', self::$FIELDS);
