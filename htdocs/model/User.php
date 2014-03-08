@@ -58,7 +58,7 @@ class User implements Model
   
   public static function findById($id)
   {
-    if ($id != 1)
+    if ($id < 1)
       return null;
     
     $query = "SELECT " . self::$FIELDS . " FROM " . self::$TABLE . " WHERE u_id=:u_id";
