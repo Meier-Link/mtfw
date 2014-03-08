@@ -25,9 +25,14 @@ class DbConnect
     global $conf;
     $dsn = "";
     if (Conf::get('DB_PILOT') == 'sqlite')
-      $dsn .= Conf::get('DB_PILOT') . ':.' . Conf::get('DB_PATH');
+      $dsn .= Conf::get('DB_PILOT') . ':.' . Conf::get('DB_PATH') . '/' . Conf::get('DB_NAME');
     else
       $dsn  = Conf::get('DB_PILOT') . ':dbname=' . Conf::get('DB_NAME') . ';host=' . Conf::get('DB_SERV');
+    if ($dsn == "")
+    {
+      Log::err('Unable to create a DB connection. Please check the website configuration !!!');
+      return false;
+    }
     $user = Conf::get('DB_USER');
     $pass = Conf::get('DB_PASS');
     try

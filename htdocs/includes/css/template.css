@@ -3,13 +3,14 @@ body
   background-color: #C2C2C2;
   color: #2C2C2C;
   font: 14px Arial, sans serif;
+  width: 1000px;
   margin: auto;
 }
 #header, #main, #footer
 {
   background-color: #BBBDDD;
   float: left;
-  width: 1000px;
+  width: 100%;
   margin: auto;
   margin-bottom: -8px;
   padding: 10px;
