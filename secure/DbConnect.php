@@ -88,10 +88,18 @@ class DbConnect
     if (is_null($params))
     {
       $result = $this->db->prepare($query);
+      if ($result)
+      {
+        $result->execute();
+        $this->printErrors($result);
+      }
+      else
+      {
+        Log::err('Unable to send the query, result preparation return "false"');
+        return null;
+      }
       if (!is_null($classname))
         $result->setFetchMode(PDO::FETCH_CLASS, $classname);
-      $result->execute();
-      $this->printErrors($result);
     }
     else
     {
