@@ -59,7 +59,7 @@ class DbConnect
     var_dump($this->db);
   }
   
-  private function printErrors($result)
+  private function someError($result)
   {
     $errors = $result->errorInfo();
     if($errors[0] != '00000')
@@ -75,7 +75,9 @@ class DbConnect
       $logs = ob_get_contents();
       ob_end_clean();
       Log::dbg($logs);
+      return true;
     }
+    return false;
   }
 
   public function query($query, $classname = null, $params = null, $avoid_inlining = false)
@@ -86,64 +88,33 @@ class DbConnect
       return null;
     }
     
+    $prepare_opt = array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY);
     if (is_null($params))
+      $prepare_opt = array();
+    
+    try
     {
-      try
+      $result = $this->db->prepare($query, $prepare_opt);
+      if ($result)
       {
-        $result = $this->db->prepare($query);
-        if ($result)
-        {
-          if (!is_null($classname))
-            $result->setFetchMode(PDO::FETCH_CLASS, $classname);
+        if (is_null($params))
           $result->execute();
-          $this->printErrors($result);
-        }
         else
-        {
-          Log::err('Unable to send the query, result preparation return "false"');
-          return null;
-        }
-      }
-      catch(PDOException $e)
-      {
-        Log::err($e->getMessage());
-        return null;
-      }
-    }
-    else
-    {
-      if (!is_array($params))
-      {
-        throw new Exception('$params must be an array !\n');
-        print_r($params);
-        $result = null;
+          $result->execute($params);
+        if ($this->someError($result)) return null;
       }
       else
       {
-        try
-        {
-          $result = $this->db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-          if ($result)
-          {
-            if (!is_null($classname))
-              $result->setFetchMode(PDO::FETCH_CLASS, $classname);
-            $result->execute($params);
-            $this->printErrors($result);
-          }
-          else
-          {
-            Log::err('Unable to send the query, result preparation return "false"');
-            return null;
-          }
-        }
-        catch(PDOException $e)
-        {
-          Log::err($e->getMessage());
-          return null;
-        }
-        
+        Log::err('Unable to send the query, result preparation return "false"');
+        return null;
       }
     }
+    catch(PDOException $e)
+    {
+      Log::err($e->getMessage());
+      return null;
+    }
+    
     if (!is_null($classname))
       $return = $result->fetchAll(PDO::FETCH_CLASS, $classname);
     else
