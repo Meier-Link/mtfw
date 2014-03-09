@@ -38,6 +38,7 @@ class DbConnect
     try
     {
       $this->db = new PDO($dsn, $user, $pass);
+      $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (PDOException $e)
     {
@@ -87,19 +88,27 @@ class DbConnect
     
     if (is_null($params))
     {
-      $result = $this->db->prepare($query);
-      if ($result)
+      try
       {
-        $result->execute();
-        $this->printErrors($result);
+        $result = $this->db->prepare($query);
+        if ($result)
+        {
+          if (!is_null($classname))
+            $result->setFetchMode(PDO::FETCH_CLASS, $classname);
+          $result->execute();
+          $this->printErrors($result);
+        }
+        else
+        {
+          Log::err('Unable to send the query, result preparation return "false"');
+          return null;
+        }
       }
-      else
+      catch(PDOException $e)
       {
-        Log::err('Unable to send the query, result preparation return "false"');
+        Log::err($e->getMessage());
         return null;
       }
-      if (!is_null($classname))
-        $result->setFetchMode(PDO::FETCH_CLASS, $classname);
     }
     else
     {
@@ -111,11 +120,27 @@ class DbConnect
       }
       else
       {
-        $result = $this->db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        if (!is_null($classname))
-          $result->setFetchMode(PDO::FETCH_CLASS, $classname);
-        $result->execute($params);
-        $this->printErrors($result);
+        try
+        {
+          $result = $this->db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+          if ($result)
+          {
+            if (!is_null($classname))
+              $result->setFetchMode(PDO::FETCH_CLASS, $classname);
+            $result->execute($params);
+            $this->printErrors($result);
+          }
+          else
+          {
+            Log::err('Unable to send the query, result preparation return "false"');
+            return null;
+          }
+        }
+        catch(PDOException $e)
+        {
+          Log::err($e->getMessage());
+          return null;
+        }
         
       }
     }
