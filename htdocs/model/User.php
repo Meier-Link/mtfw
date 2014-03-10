@@ -51,7 +51,7 @@ class User implements Model
   {
     $query = "SELECT " . self::$FIELDS . " FROM " . self::$TABLE;
     $db = DbConnect::getInstance();
-    $users = $db->query($query, "User");
+    $users = $db->query($query, "User", null, true);
     if (!is_array($users)) $users = array($users);
     return $users;
   }
