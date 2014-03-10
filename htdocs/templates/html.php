@@ -27,21 +27,14 @@
     foreach($controller->html_head as $chead)
       echo $chead;
   
-  foreach(Conf::get('DEFAULT_JS') as $js)
+  foreach($controller->getJsFiles() as $js)
   {
     ?><script src="<?php echo $js; ?>" type="text/javascript" ></script><?php
   }
   
-  foreach(Conf::get('DEFAULT_CSS') as $css)
+  foreach($controller->getCssFiles() as $css)
   {
     ?><link href="/<?php echo $css; ?>" rel="stylesheet" type="text/css" /><?php
-  }
-  if (!empty($controller->custom_css))
-  {
-    foreach($controller->custom_css as $css)
-    {
-      ?><link href="<?php echo $css; ?>" rel="stylesheet" type="text/css" /><?php
-    }
   }
   ?>
 </head>

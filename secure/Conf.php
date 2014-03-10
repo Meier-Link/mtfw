@@ -42,8 +42,8 @@ class Conf
     'ADMIN'         => array('LOGIN' => 'root', 'PSSWD'  => 'password'), // Set PSSWD to null if you use db storage
     
     /* HTML template specific */
-    'DEFAULT_CSS'   => array('includes/css/template.css'),
-    'DEFAULT_JS'    => array('/includes/js/lib.js', '/includes/js/action.js')
+    'DEFAULT_CSS'   => array('template.css'),
+    'DEFAULT_JS'    => array('lib.js', 'action.js')
   );
   
   public static function get($varname)

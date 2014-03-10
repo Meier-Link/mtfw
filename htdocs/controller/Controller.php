@@ -16,6 +16,8 @@ class Controller extends StdTools
   private $_template      = 'html';
   private $_desc          = '';
   private $_default_home  = '/main/home';
+  private $_css           = array();
+  private $_js            = array();
   public $query_string  = '/index';
   public $params      = array();
   public $query       = '';
@@ -28,7 +30,6 @@ class Controller extends StdTools
   public $path        = "";
   public $ariane_file = "";
   public $html_head   = "";
-  public $custom_css  = "";
   
   public static function init()
   {
@@ -266,12 +267,76 @@ class Controller extends StdTools
       $this->ariane_file = "home";
     }
   }
-    
+  
   public function logout()
   {
     $_SESSION['user'] = null;
     Log::inf('Vous avez bien été déconnecté');
     $this->path = $this->_default_home;
     $this->ariane_file = "home";
+  }
+  
+  protected function setJsFiles($files)
+  {
+    if (is_array($files))
+    {
+      foreach($files as $file)
+      {
+        $this->_js[] = $file;
+      }
+    }
+    else
+    {
+      $this->_js[] = $files;
+    }
+  }
+  
+  protected function setCssFiles($files)
+  {
+    if (is_array($files))
+    {
+      foreach($files as $file)
+      {
+        $this->_css[] = $file;
+      }
+    }
+    else
+    {
+      $this->_css[] = $files;
+    }
+  }
+  
+  public function getJsFiles()
+  {
+    $r = array();
+    
+    foreach(Conf::get('DEFAULT_JS') as $file)
+    {
+      $r[] = '/includes/js/' . $file;
+    }
+    
+    foreach($this->_js as $file)
+    {
+      $r[] = '/includes/js/' . $file;
+    }
+    
+    return $r;
+  }
+  
+  public function getCssFiles()
+  {
+    $r = array();
+    
+    foreach(Conf::get('DEFAULT_CSS') as $file)
+    {
+      $r[] = 'includes/css/' . $file;
+    }
+    
+    foreach($this->_js as $file)
+    {
+      $r[] = 'includes/css/' . $file;
+    }
+    
+    return $r;
   }
 }
