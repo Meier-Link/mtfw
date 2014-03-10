@@ -41,7 +41,7 @@
 
 <body>
   <div id="header">
-    <h1>MyTinyFrameWork</h1>
+    <h1><?php echo Conf::get('SITE_NAME'); ?></h1>
     <div style="float:left; text-align:right; width:99%; margin-top:-84px">
       <?php if (isset($_SESSION['user']) && !is_null($_SESSION['user'])) { ?>
       Bienvenue, <?php echo $_SESSION['user']->u_name(); ?>.
