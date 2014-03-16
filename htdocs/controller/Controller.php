@@ -70,7 +70,7 @@ class Controller extends StdTools
     {
       $controller_name = "Main";
       $action = "notfound";
-      Log::err("La section demandée n'existe pas");
+      Log::err("La section (" . $controller_name . ") demandée n'existe pas");
     }
     $mycontroller = new $controller_name();
     //$mycontroller->logs = new Log();
@@ -264,6 +264,7 @@ class Controller extends StdTools
     if (isset($_SESSION['user']) && !is_null($_SESSION['user']))
     {
       $this->path = $this->_default_home;
+      $this->home();
       $this->ariane_file = "home";
     }
   }
@@ -273,6 +274,7 @@ class Controller extends StdTools
     $_SESSION['user'] = null;
     Log::inf('Vous avez bien été déconnecté');
     $this->path = $this->_default_home;
+    $this->home();
     $this->ariane_file = "home";
   }
   

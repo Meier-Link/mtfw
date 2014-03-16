@@ -67,7 +67,7 @@ function get_server_data(section, on_success, post_params, template)
   }
   var query = make_http_object();
   answer = '';
-  query.open('POST', 'index.php', true);
+  query.open('POST', section, true);
   query.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   query.setRequestHeader("Content-length", paramstr.length);
   query.setRequestHeader("Connection", "close");

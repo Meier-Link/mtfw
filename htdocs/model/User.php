@@ -130,7 +130,7 @@ class User implements Model
         }
       }
     }
-    $query = "SELECT " . self::$FIELD . " FROM " . self::$TABLE . " WHERE u_name=:u_name";
+    $query = "SELECT " . self::$FIELDS . " FROM " . self::$TABLE . " WHERE u_name=:u_name";
     $params = array(':u_name' => $uname);
     $db = DbConnect::getInstance();
     $user = $db->query($query, 'User', $params);
