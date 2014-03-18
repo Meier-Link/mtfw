@@ -55,8 +55,9 @@ function make_http_object()
 function get_server_data(section, on_success, post_params, template)
 {
   var template  = template || 'json';
-  var section   = section || 'resource';
+  var section   = section || 'index';
   var paramstr  = 'section=' + section + '&template=' + template;
+  if(section.substr(0,1) != '/') section = '/' + section;
   if (post_params != undefined && post_params != null)
   {
     for (e in post_params)
