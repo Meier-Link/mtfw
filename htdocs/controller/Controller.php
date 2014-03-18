@@ -14,7 +14,7 @@
 class Controller extends StdTools
 {
   private $_template      = 'html';
-  private $_desc          = '';
+  private $_desc          = null;
   private $_default_home  = '/main/home';
   private $_css           = array();
   private $_js            = array();
