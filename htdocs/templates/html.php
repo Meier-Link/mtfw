@@ -16,7 +16,7 @@
 <head>
   <title><?php echo Conf::get('SITE_NAME'); ?> :: <?php echo $controller->title; ?></title>
   <link type="image/x-icon" href="/includes/img/og-logo.ico" rel="shortcut icon">
-  <meta name="og:title" content="MyTinyFrameWork : <?php echo $controller->title; ?>">
+  <meta name="og:title" content="<?php echo Conf::get('SITE_NAME'); ?> : <?php echo $controller->title; ?>">
   <meta name="description" content="<?php echo $controller->desc(); ?>">
   <meta name="og:description" content="<?php echo $controller->desc(); ?>">
   <meta name="image" content="/includes/img/logo.png">
