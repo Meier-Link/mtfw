@@ -111,6 +111,13 @@ class Controller extends StdTools
     $this->ariane_file = "home";
   }
   
+  public function param($key)
+  {
+    if (array_key_exists($key, $this->params))
+      return $this->params[$key];
+    return null;
+  }
+  
   public function relPath()
   {
     if ($this->path != "")
